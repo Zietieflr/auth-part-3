@@ -1,4 +1,5 @@
 class PetsController < ApplicationController
+  before_action :authenticate, only: [:create]
   def index
     @pets = Pet.all
 
@@ -10,7 +11,7 @@ class PetsController < ApplicationController
       name: params[:name],
       species: params[:species],
     )
-
+  
     render json: { pet: @pet }, status: :created
   end
 end
